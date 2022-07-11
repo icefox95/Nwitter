@@ -29,7 +29,11 @@ function App() {
 
   const refreshUser = () => {
         const user = authService.currentUser;
-        setUserObj({...user});
+        setUserObj({
+            displayName: user.displayName,
+            uid: user.uid,
+            updateProfile: (args) => user.updateProfile(args),
+        });
   }
 
   return (
@@ -43,7 +47,6 @@ function App() {
         ) : ( 
           "Initializing..."
         )}
-      <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
     </>
   );
 }
